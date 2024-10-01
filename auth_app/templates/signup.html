@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}YouCart - SignUp{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href={% static 'css/auth.css' %}>
+{% endblock %}
+
+{% block content %}
+
+<div class="container signup-container">
+    <div class="row signup-box">
+        <div class="col-md-6 welcome-section d-none d-md-block text-center">
+            <h2>Welcome to YouCart</h2>
+            <p>Create an account and explore our collections</p>
+            <img src={% static "/images/login1.png" %} alt="Welcome illustration" class="img-fluid mt-4">
+        </div>
+        <div class="col-md-6 signup-form-section align-content-center">
+            <h3 class="mb-4 text-center">Signup to YouCart</h3>
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            <form method="post" action="{% url 'signup' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ form.username.value|default_if_none:'' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password2" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="password2" name="password2" required>
+                </div>
+                <button type="submit" class="btn btn-signup w-100">Sign up</button>
+            </form>
+            <div class="text-center mt-3">
+                {% comment %} <a href="#" class="text-decoration-none">Forgot password?</a> <br> {% endcomment %}
+                already have an account? <a href="/login/" class="text-decoration-none">Login</a>
+            </div>
+            <div class="text-center mt-3">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
