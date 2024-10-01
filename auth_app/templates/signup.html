@@ -11,12 +11,12 @@
 
 <div class="container signup-container">
     <div class="row signup-box">
-        <div class="col-md-6 welcome-section d-none d-md-block text-center">
+        <div class="col-md-6 d-none d-md-block text-center welcome-section">
             <h2>Welcome to YouCart</h2>
             <p>Create an account and explore our collections</p>
             <img src={% static "/images/login1.png" %} alt="Welcome illustration" class="img-fluid mt-4">
         </div>
-        <div class="col-md-6 signup-form-section align-content-center">
+        <div class="col-md-6 align-content-center signup-form-section">
             <h3 class="mb-4 text-center">Signup to YouCart</h3>
             {% if messages %}
             {% for message in messages %}

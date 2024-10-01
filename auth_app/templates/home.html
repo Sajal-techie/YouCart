@@ -4,9 +4,159 @@
 {% block title %}YouCart - Home{% endblock %}
 
 {% block extra_head %}
-{% comment %} <link rel="stylesheet" href={% static 'css/auth.css' %}> {% endcomment %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block content %}
-home page
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">YouCart</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login/">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup/">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart/">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products/">Products</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Carousel -->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'images/banner1.jpg' %}" class="d-block w-100" alt="Banner 1">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/banner2.jpg' %}" class="d-block w-100" alt="Banner 2">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/banner3.jpg' %}" class="d-block w-100" alt="Banner 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Product Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Featured Products</h2>
+    <div class="row">
+        <!-- Example Product Card -->
+        <div class="col-xl-3 col-md-4 col-6 mb-4 col">
+            <div class="card">
+                <img src="{% static 'images/product5.jpg' %}" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$29.99</p>
+                    <a href="/products/product1/" class="btn btn-primary">View Product</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-4 col-6 mb-4">
+            <div class="card">
+                <img src="{% static 'images/product5.jpg' %}" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$29.99</p>
+                    <a href="/products/product1/" class="btn btn-primary">View Product</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'images/product5.jpg' %}" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$29.99</p>
+                    <a href="/products/product1/" class="btn btn-primary">View Product</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'images/product5.jpg' %}" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$29.99</p>
+                    <a href="/products/product1/" class="btn btn-primary">View Product</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'images/product5.jpg' %}" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$29.99</p>
+                    <a href="/products/product1/" class="btn btn-primary">View Product</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'images/product5.jpg' %}" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$29.99</p>
+                    <a href="/products/product1/" class="btn btn-primary">View Product</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'images/product2.jpg' %}" class="card-img-top" alt="Product 2">
+                <div class="card-body">
+                    <h5 class="card-title">Product 2</h5>
+                    <p class="card-text">$39.99</p>
+                    <a href="/products/product2/" class="btn btn-primary">View Product</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'images/product3.jpg' %}" class="card-img-top" alt="Product 3">
+                <div class="card-body">
+                    <h5 class="card-title">Product 3</h5>
+                    <p class="card-text">$49.99</p>
+                    <a href="/products/product3/" class="btn btn-primary">View Product</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-light text-center text-lg-start mt-5">
+    <div class="container p-4">
+        <p class="text-center">© 2024 YouCart. All rights reserved.</p>
+        <div class="text-center">
+            <a href="/privacy-policy/" class="text-decoration-none">Privacy Policy</a> | 
+            <a href="/terms-of-service/" class="text-decoration-none">Terms of Service</a>
+        </div>
+    </div>
+</footer>
 {% endblock %}
