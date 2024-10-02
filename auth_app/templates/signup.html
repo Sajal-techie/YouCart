@@ -18,11 +18,11 @@
         </div>
         <div class="col-md-6 align-content-center signup-form-section">
             <h3 class="mb-4 text-center">Signup to YouCart</h3>
-            {% if messages %}
+            {% comment %} {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">{{ message }}</div>
             {% endfor %}
-            {% endif %}
+            {% endif %} {% endcomment %}
             <form method="post" action="{% url 'signup' %}">
                 {% csrf_token %}
                 <div class="mb-3">
@@ -52,4 +52,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+    var toastList = toastElList.map(function(toastEl) {
+        return new bootstrap.Toast(toastEl)
+    });
+    toastList.forEach(toast => toast.show());
+</script>
 {% endblock %}

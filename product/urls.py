@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from .views import add_product_view, edit_product_view, change_status_view, delete_product_view
 
 urlpatterns = [

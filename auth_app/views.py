@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import SignupForm
 from product.models import Product
+from cart.models import Cart,CartItem
 
 
 def signup_view(request):
@@ -17,7 +18,6 @@ def signup_view(request):
             messages.success(request, "Account created successfully! Please log in.")
             return redirect('login')  
         else:
-            print()
             messages.error(request, f"{list(form.errors.values())[-1][0]}")
     else:
         form = SignupForm()
@@ -51,8 +51,11 @@ def logout_view(request):
 def home_view(request):
     print(request.user)
     products = Product.objects.filter(is_active=True)
+    cart_items_id = CartItem.objects.filter(cart__user = request.user).values_list('product_id', flat=True) if request.user.is_authenticated else []
+    print(cart_items_id)
     context = {
-        'products': products
+        'products': products,
+        'cart_product_ids': cart_items_id
     }
     return render(request, 'home.html', context)
 
@@ -90,5 +93,5 @@ def admin_home_view(request):
             'products': products
         }
         return render(request, 'admin_home.html', context)
-    # messages.error(request, 'You dont have permission to access this page')
+    messages.error(request, 'You dont have permission to access this page')
     return redirect('login')

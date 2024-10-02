@@ -8,37 +8,9 @@
 {% endblock %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="/">YouCart</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                    <span class="nav-link" >{{request.user|capfirst}}</span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cart/">Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout/">Logout</a>
-                </li>
-                {% else %}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/login/">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/signup/">Sign Up</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</nav>
+<!-- Navbar -->
+{% include "navbar.html" %}
 
 <!-- Carousel -->
 <div id="homecarousel" class="carousel slide" data-bs-ride="carousel">
@@ -75,11 +47,15 @@
         {% for product in products  %}
             <div class="col-xl-3 col-md-4 col-6 mb-4">
                 <div class="card">
-                    <img src={{ product.image.url }} class="card-img-top" alt="Product 1">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="Product 1">
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">₹{{ product.price }}</p>
-                        <a href="/products/product1/" class="btn btn-primary">View Product</a>
+                        {% if product.id in cart_product_ids %}
+                        <a href="/cart/" class="btn btn-primary">View Cart</a>
+                        {% else %}
+                            <a href="/add_cart/{{ product.id }}/" class="btn btn-primary">Add to Cart</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -88,13 +64,5 @@
 </div>
 
 <!-- Footer -->
-<footer class="bg-light text-center text-lg-start mt-5">
-    <div class="container p-4">
-        <p class="text-center">© 2024 YouCart. All rights reserved.</p>
-        <div class="text-center">
-            <a href="/privacy-policy/" class="text-decoration-none">Privacy Policy</a> | 
-            <a href="/terms-of-service/" class="text-decoration-none">Terms of Service</a>
-        </div>
-    </div>
-</footer>
+{% include "footer.html" %}
 {% endblock %}
