@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import SignupForm
+from product.models import Product
 
 
 def signup_view(request):
@@ -47,7 +48,47 @@ def logout_view(request):
     return redirect('login')
 
 
-@login_required
 def home_view(request):
     print(request.user)
-    return render(request, 'home.html')
+    products = Product.objects.filter(is_active=True)
+    context = {
+        'products': products
+    }
+    return render(request, 'home.html', context)
+
+
+def admin_login_view(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return redirect('admin_home')
+        else:
+            return redirect('home')
+        
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None:
+            if user.is_staff:
+                login(request, user)
+                return redirect('admin_home')
+            else:
+                messages.error(request, "You don't have permission to access this page")
+        else:
+            messages.error(request, "Invald email or password")
+
+    return render(request, "admin_login.html")
+
+
+@login_required(login_url='admin_login')
+def admin_home_view(request):
+    if request.user.is_staff:
+        products = Product.objects.all()
+        context = {
+            'products': products
+        }
+        return render(request, 'admin_home.html', context)
+    # messages.error(request, 'You dont have permission to access this page')
+    return redirect('login')
