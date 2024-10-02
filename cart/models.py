@@ -27,5 +27,29 @@ class CartItem(models.Model):
     
     @property
     def total_price(self):
-        print(self.product.price * self.quantity)
         return self.product.price * self.quantity
+    
+
+class Order(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=20, default="ordered")
+    order_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.user}'s Order {self.id}"
+    
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    @property
+    def total_price(self):
+        return self.price * self.quantity
+    
+
+    def __str__(self):
+        return f"{self.product} x {self.quantity} item"
+    

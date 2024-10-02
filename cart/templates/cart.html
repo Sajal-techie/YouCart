@@ -54,11 +54,7 @@
     </div>
 
     <div class="d-flex justify-content-between mt-4">
-        {% if total_amount < 500 %}
-        <h4> ₹{{ total_amount|floatformat:2 }} + ₹50 (delivery) <br>Grand Total: ₹{{ total_amount|add:50|floatformat:2 }} </h4>
-        {% else %}
-        <h4>Grand Total: ₹{{ total_amount }}  (free delivery)</h4>
-        {% endif %}
+        <h4>Grand Total: ₹{{ total_amount }}  </h4>
         <div>
             <a href="/place_order/" class="btn btn-primary align-content-center">Place Order</a>
         </div>
