@@ -47,9 +47,9 @@ class OrderItem(models.Model):
 
     @property
     def total_price(self):
-        return self.price * self.quantity
+        return self.product.price * self.quantity
     
 
     def __str__(self):
-        return f"{self.product} x {self.quantity} item"
+        return f"{self.product.name} x {self.quantity} item"
     

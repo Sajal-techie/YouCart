@@ -114,3 +114,9 @@ def create_order(request):
 
     messages.success(request, "Your Order has been placed Successfully")
     return redirect('cart')
+
+
+@login_required
+def order_history(request):
+    orders = Order.objects.filter(user=request.user).prefetch_related('items__product')
+    return render(request, "orders.html", {'orders':orders})
