@@ -52,7 +52,7 @@
                                 {% csrf_token %}
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Product Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ product.name }}" readonly>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ product.name }}" >
                                 </div> 
                                 <div class="mb-3">
                                     <label for="price" class="form-label">Price</label>
@@ -130,8 +130,6 @@
         </div>
     </div>
 </div>
-{% comment %} <footer class="bg-dark text-white text-center py-3 mt-4">
-    <p>&copy; 2024 YouCart. All Rights Reserved.</p>
-</footer> {% endcomment %}
+
 
 {% endblock content %}

@@ -1,4 +1,7 @@
 from django import forms
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.contrib.auth.password_validation import validate_password
 from .models import CustomUser
 
 
@@ -10,7 +13,18 @@ class SignupForm(forms.ModelForm):
         model = CustomUser
         fields = ['username','email', 'password']
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        validate_email(email)
+        if CustomUser.objects.filter(email=email).exists():
+            raise ValidationError("This email is already in use.")
+        return email
 
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        validate_password(password)
+        return password
+    
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")

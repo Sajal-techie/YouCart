@@ -5,8 +5,8 @@ body {
 .navbar .navbar-brand{
     font-size: 1.5rem;
     color: #ff7300;
-
 }
+
 .navbar .nav-link {
     color: #ff7300;
 }
@@ -22,4 +22,8 @@ body {
 
 .btn-primary:hover {
     background-color: #ffd1a4; 
+}
+
+.badge{
+    color: #f48020;
 }
